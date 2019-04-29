@@ -10,9 +10,17 @@ class Model1Controller < Rho::RhoController
     render :back => '/app'
   end
 
-  def get_string
-      puts "$$$ Model1_Controller.get_string with params = "+@params.to_s
-      render :string => "*** RRRRRESULT !!! ***"
+  def get_first_item_field_by_name
+      puts "$$$ Model1_Controller.get_first_item_field_by_name START with params = "+@params.to_s
+
+      result_str = ""
+      item = Model1.find(:first)
+      result_str = item.attr1 if @params['fieldName'] == "attr1"
+      result_str = item.attr2 if @params['fieldName'] == "attr2"
+      result_str = item.attr3 if @params['fieldName'] == "attr3"
+
+      puts "$$$ Model1_Controller.get_first_item_field_by_name FINISH"
+      render :string => result_str
   end
 
 

@@ -41,9 +41,9 @@ class Model1
       puts "$$$ Model1.fillModelByPredefinedSet FINISH"
   end
 
-  def self.callNativeCallback(param1)
-      puts "$$$ Model1.callNativeCallback START param1 = "+param1.to_s
-      Rho::Ruby.callNativeCallback("myCallback01", "test string param ZZZ");
+  def self.callRubyNativeCallback
+      puts "$$$ Model1.callNativeCallback START"
+      Rho::Ruby.callNativeCallback("mySuperMegaRubyNativeCallbackID", "test string param ZZZ");
       puts "$$$ Model1.callNativeCallback FINISH"
   end
 
@@ -55,10 +55,22 @@ class Model1
           ar << model1.attr1 if param_name == "attr1"
           ar << model1.attr2 if param_name == "attr2"
           ar << model1.attr3 if param_name == "attr3"
-          ar << h
       end
       puts "$$$ Model1.getArrayWithAllValuesOfParamAllItemsByParamName FINISH"
       ar
   end
+
+  def self.receiveAllItemAsArrayOfHashesWithParams(param1, param2)
+      puts "$$$ Model1.receiveAllItemAsHashWithParams START"
+      puts "$$$ input param1 = "+param1.to_s
+      puts "$$$ input param2 = "+param2.to_s
+      puts "$$$ input params example parse - param1['key1_array'][1] = "+param1['key1_array'][1].to_s
+      puts "$$$ input params example parse - param1['key3_bool'] = "+param1['key3_bool'].to_s
+      puts "$$$ Model1.receiveAllItemAsHashWithParams FINISH"
+      return getAllItemsAsHashes
+  end
+
+
+
 
 end
