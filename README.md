@@ -9,11 +9,11 @@ Native_iOS - Native iOS example.
 1. go to RhodesApp folder
 2. prepare Rhodes framework for iOS projects (already linked in Native_iOS example) - framework should be placed into Native_iOS folder !
 
-<pre>rake build:iphone:rhodeslib_framework["<fullpath>/Native_iOS"]</pre>
+<pre>rake build:iphone:rhodeslib_framework["fullpath/Native_iOS"]</pre>
 
 3. prepare Rhodes application bundle (already linked in Native_iOS example) - folder RhoBundle should be placed in root of XCode project folder !
 
-<pre>rake build:iphone:rhodeslib_bundle["<fullpath>/Native_iOS"]</pre>
+<pre>rake build:iphone:rhodeslib_bundle["fullpath/Native_iOS"]</pre>
 
 4. if you want to link framework and bundle into your already exist XCode project make nextsteps after generate framework andbundle :
 Drag and Drop bundle folder into root of XCode project (when it open in XCode) - make reference to folder option
