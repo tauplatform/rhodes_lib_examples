@@ -61,3 +61,16 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+
+# logs and symlinks
+rholog.txt
+rholog-*
+sim-*
+
+# build output
+bin/
+project/
+rhosimulator/
+public/api/generated/
+.cbc
