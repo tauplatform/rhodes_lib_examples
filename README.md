@@ -2,6 +2,7 @@
 Examples of native applications with using of Rhodes as standalone lib inside native platform application.
 
 RhodesApp - Rhodes application (contain ruby code for native applications on iOS, Android, etc.)
+
 Native_iOS - Native iOS example.
 
 # for iOS
