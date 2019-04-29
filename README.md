@@ -15,7 +15,7 @@ Native_iOS - Native iOS example.
 
 <pre>rake build:iphone:rhodeslib_bundle["fullpath/Native_iOS"]</pre>
 
-4. if you want to link framework and bundle into your already exist XCode project make nextsteps after generate framework andbundle :
+4. if you want to link framework and bundle into your already exist XCode project make next steps after generate framework and bundle ( set destination path to your XCode project root):
 Drag and Drop bundle folder into root of XCode project (when it open in XCode) - make reference to folder option
 Drag and Drop framework into root of XCode project (when it open in XCode) and after it add framework into embedded binary list (general option of project)
 
