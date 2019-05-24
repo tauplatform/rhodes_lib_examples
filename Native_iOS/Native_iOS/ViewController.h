@@ -16,12 +16,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *mRunTest03;
 @property (weak, nonatomic) IBOutlet UIButton *mRunTest04;
 @property (weak, nonatomic) IBOutlet UIButton *mRunTest05;
+@property (weak, nonatomic) IBOutlet UIButton *mRunTest06;
 
 - (IBAction)onPressRunTest01:(id)sender;
 - (IBAction)onPressRunTest02:(id)sender;
 - (IBAction)onPressRunTest03:(id)sender;
 - (IBAction)onPressRunTest04:(id)sender;
 - (IBAction)onPressRunTest05:(id)sender;
+- (IBAction)onPressRunTest06:(id)sender;
 
 
 // test 01
@@ -40,6 +42,11 @@
 
 // test 05
 - (void)complexJSONexample;
+
+
+
+// test 06
+- (void)restAPIexample;
 
 @end
 

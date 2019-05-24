@@ -417,7 +417,40 @@
 }
 
 
+- (void)restAPIexample {
+    NSLog(@"$$$ restAPIexample START");
+    
+    id<IRhoRuby> rr = [RhoRubySingletone getRhoRuby];
 
+    NSString* ruby_server_url = [rr getRubyServerURL];
+
+    NSString* url = [NSString stringWithFormat:@"%@%@", ruby_server_url, @"/app/Model1/get_first_item_field_by_name?fieldName=attr1"];
+    
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]
+                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                       timeoutInterval:10.0];
+    NSData* data = nil;
+    
+    @try {
+        NSHTTPURLResponse *response = NULL;
+        data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    }
+    @catch (NSException *exception) {
+        //NSLog(@"exception");
+    }
+    @finally {
+        //NSLog(@"finally");
+    }
+    
+    if (data != nil) {
+        NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"$$$ RECEIVED DATA [%@]", newStr);
+    }
+    
+    
+    
+    NSLog(@"$$$ restAPIexample FINISH");
+}
 
 
 - (IBAction)onPressRunTest01:(id)sender {
@@ -470,6 +503,7 @@
     NSLog(@"$$$ onPressRunTest04 FINISH");
 }
 
+
 - (IBAction)onPressRunTest05:(id)sender {
     NSLog(@"$$$ onPressRunTest05 START");
     NSLog(@"$$$ prepare JSON parameters, call Ruby and receive result in JSON");
@@ -481,4 +515,18 @@
     
     NSLog(@"$$$ onPressRunTest05 FINISH");
 }
+
+
+- (IBAction)onPressRunTest06:(id)sender {
+    NSLog(@"$$$ onPressRunTest06 START");
+    NSLog(@"$$$ call local Ruby Server Rest API and receive result in JSON");
+    
+    [self restAPIexample];
+
+    NSLog(@"$$$ onPressRunTest06 FINISH");
+    
+}
+
+
+
 @end

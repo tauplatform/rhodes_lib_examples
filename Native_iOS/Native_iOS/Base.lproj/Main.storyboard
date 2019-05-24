@@ -63,6 +63,15 @@
                                     <action selector="onPressRunTest05:" destination="BYZ-38-t0r" eventType="touchDown" id="9di-ez-nmN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ds-lE-5W3">
+                                <rect key="frame" x="0.0" y="343" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="run test 06"/>
+                                <connections>
+                                    <action selector="onPressRunTest06:" destination="BYZ-38-t0r" eventType="touchDown" id="FDF-ir-QTk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.55618018199999997" green="1" blue="0.30162293220000003" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
