@@ -57,8 +57,8 @@ class DefaultMain extends RhoMain
                         {
                             URL url = new URL(request);
                             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                            urlConnection.setReadTimeout(200);
-                            urlConnection.setConnectTimeout(200);
+                            urlConnection.setReadTimeout(2000);
+                            urlConnection.setConnectTimeout(2000);
                             urlConnection.setRequestMethod("GET");
                             InputStream in = urlConnection.getInputStream();
                             InputStreamReader inputStreamReader = new InputStreamReader(in);
@@ -79,6 +79,7 @@ class DefaultMain extends RhoMain
 
                         catch (java.io.IOException e)
                         {
+                            e.printStackTrace();
                         }
                     }
                 }).start();
