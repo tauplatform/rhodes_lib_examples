@@ -55,7 +55,7 @@ class DefaultMain extends RhoMain
 
                 new Thread(new Runnable() {
                     public void run() {
-                        String serverUrl = com.rhomobile.rhodes.RhoRubySingleton.instance().getRubyServerURL() + "/app/Model1/get_first_item_field_by_name?fieldName=attr1";
+                        String serverUrl = RhoRubySingleton.instance().getRubyServerURL() + "/app/Model1/get_first_item_field_by_name?fieldName=attr1";
                         String request = serverUrl;
 
                         try
@@ -96,9 +96,18 @@ class DefaultMain extends RhoMain
         btest3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String str = com.rhomobile.rhodes.RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "getAllItemsAsHashes", null);
-                String str2 = com.rhomobile.rhodes.RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "receiveAllItemAsArrayOfHashesWithParams",
-                        "[{\"key1_array\":[\"param_array1_item1_string_value\",\"param_array1_item2_string_value\"],\"key2_integer\":1234567,\"key3_bool\":true},0.123450]");
+                RhoRubySingleton.instance().executeInRubyThread(new RhoRubySingleton.RhoRunnable() {
+                    public void rhoRun() {
+                        String str = RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "getAllItemsAsHashes", null);
+                        Log.d("TestAPP", "Model1.getAllItemsAsHashes() result:");
+                        Log.d("TestAPP", str);
+
+                        String str2 = RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "receiveAllItemAsArrayOfHashesWithParams",
+                                "[{\"key1_array\":[\"param_array1_item1_string_value\",\"param_array1_item2_string_value\"],\"key2_integer\":1234567,\"key3_bool\":true},0.123450]");
+                        Log.d("TestAPP", "Model1.receiveAllItemAsArrayOfHashesWithParams() result:");
+                        Log.d("TestAPP", str2);
+                    }
+                });
             }
         });
 
