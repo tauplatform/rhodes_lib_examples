@@ -15,6 +15,7 @@ import com.rhomobile.rhodes.RhodesActivity;
 import com.rhomobile.rhodes.RhoMain;
 import com.rhomobile.rhodes.RhodesService;
 import com.rhomobile.rhodes.util.JSONGenerator;
+import com.rhomobile.rhodes.RhoRubySingleton;
 
 import org.json.JSONStringer;
 
@@ -39,7 +40,11 @@ class DefaultMain extends RhoMain
         binit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                com.rhomobile.rhodes.RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "fillModelByPredefinedSet", null);
+                RhoRubySingleton.instance().executeInRubyThread(new RhoRubySingleton.RhoRunnable() {
+                    public void rhoRun() {
+                        RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "fillModelByPredefinedSet", null);
+                    }
+                });
             }
         });
 
