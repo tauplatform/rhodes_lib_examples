@@ -40,27 +40,29 @@ global.myfunc03 = function() {
     url = Rho.RubyServer.serverURL + "/app/Model1/get_first_item_field_by_name?fieldName=attr1";
     Rho.Log.info("$$$$$$$$$$$$$$$$$ URL = ["+url+"]", 'Node.js JS');
     console.log("C$$$$$$$$$$$$$$$$$ URL = ["+url+"]");
-    https.get(url, (resp) => {
-      let data = '';
+
+    https.get(url, function(resp) {
+      var data = '';
 
       // A chunk of data has been recieved.
-      resp.on('data', (chunk) => {
+      resp.on('data', function(chunk) {
           Rho.Log.info("$$$$$$$$$$$$$$$$$ received CHUNK = ["+chunk+"]", 'Node.js JS');
         data += chunk;
       });
 
       // The whole response has been received. Print out the result.
-      resp.on('end', () => {
+      resp.on('end', function() {
           Rho.Log.info("$$$$$$$$$$$$$$$$$ FINISH RhoRuby Test 03 RECEIVED DATA>>>>>>>", 'Node.js JS');
           Rho.Log.info(data, 'Node.js JS');
           console.log("C data = ["+data+"]");
           Rho.Log.info("$$$$$$$$$$$$$$$$$ FINISH RhoRuby Test 03 RECEIVED DATA<<<<<<<", 'Node.js JS');
       });
 
-    }).on("error", (err) => {
+  }).on("error", function(err) {
       Rho.Log.error("RhoRuby Test 03 RECEIVED ERROR: " + err.message, 'Node.js JS');
       console.log("C RECEIVED ERROR: " + err.message);
     });
+
     Rho.Log.info("$$$$$$$$$$$$$$$$$ FINISH RhoRuby Test 03 !!!", 'Node.js JS');
 };
 global.myfunc04 = function() {
