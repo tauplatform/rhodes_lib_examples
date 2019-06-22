@@ -7,7 +7,9 @@ Native_iOS - Native iOS example.
 
 Native_Android - Native Android example (for Android Studio)
 
-# for iOS
+RhoNodeRubyApp - Rhodes application (works on iOS and Android only) where main code is Node.ja based Rhodes app, but also Ruby local server started and works (developer can access to Ruby code via Rhodes API or make net request to Ruby server via Node.js network API)
+
+# for iOS Native App
 
 1. go to RhodesApp folder
 2. prepare Rhodes framework for iOS projects (already linked in Native_iOS example) - framework should be placed into Native_iOS folder !
@@ -28,7 +30,7 @@ Drag and Drop framework into root of XCode project (when it open in XCode) and a
 Examples can be executed from main application screen by buttons.
 
 
-# for Android
+# for Android native App
 
 1. go to RhodesApp folder
 2. prepare Rhodes library for Android project (already linked in Native_Android example) - framework should be placed into Native_Android/MyApplication/app/libs/ folder !
@@ -83,3 +85,19 @@ There are 3 buttons:
 INIT - call method for add two items into DB (all ruby access functionality must be call only from Ruby thread)
 TEST 2 - make network request to Rest API on local ruby http server, receive result
 TEST 3 - call ruby class methods with JSON parameters and result (all ruby access functionality must be call only from Ruby thread)
+
+
+
+
+# RhoNodeRubyApp - mixed Node.js/Ruby Rhodes App
+
+Rhodes application (works on iOS and Android only) where main code is Node.ja based Rhodes app, but also Ruby local server started and works (developer can access to Ruby code via Rhodes API or make net request to Ruby server via Node.js network API)
+
+1. load required node modules(npm node modules system shoudl be installed on platfrom!): go to RhoNodeRubyApp/nodejs/server folder adn run 
+
+<pre>npm install</pre>
+
+2. run application as Rhodes application (rake run:iphone, rake run:android etc.).
+
+See example code in RhoNodeRubyApp/nodejs/server/app.js - it main Node.js application code
+Ruby code see in standart place - /app folder
