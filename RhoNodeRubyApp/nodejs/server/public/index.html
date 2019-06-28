@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Node.js Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="stylesheet" href="/public/bootstrap-3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="/public/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
+  <script src="/public/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/public/api/rhoapi-modules.js" type="text/javascript"></script>
+
+</head>
+
+<body data-platform="APPLE">
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="list-group">
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js code ...
+      </a>
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode01();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js Rho Ruby Test 01
+      </a>
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode02();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js Rho Ruby Test 02
+      </a>
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode03();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js Rho Ruby Test 03
+      </a>
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode04();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js Rho Ruby Test 04
+      </a>
+      <a href="#" class="list-group-item"  onClick="onExecuteNodejsCode05();">
+        <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        Run Node.js Rho Ruby Test 05
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+function onExecuteNodejsCode() {
+    Rho.Nodejs.executeJavascript("myfunc();");
+}
+
+function onExecuteNodejsCode01() {
+    Rho.Nodejs.executeJavascript("myfunc01();");
+}
+function onExecuteNodejsCode02() {
+    Rho.Nodejs.executeJavascript("myfunc02();");
+}
+function onExecuteNodejsCode03() {
+    Rho.Nodejs.executeJavascript("myfunc03();");
+}
+function onExecuteNodejsCode04() {
+    Rho.Nodejs.executeJavascript("myfunc04();");
+}
+function onExecuteNodejsCode05() {
+    Rho.Nodejs.executeJavascript("myfunc05();");
+}
+
+function showAlert() {
+    alert("Alert !!!");
+}
+
+function showAlertWithText(text) {
+    alert(text);
+}
+
+</script>
+
+</body>
+
+
+
+
+</html>
