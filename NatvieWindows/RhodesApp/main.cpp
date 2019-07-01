@@ -25,7 +25,7 @@ int main(int argc, unsigned char* argv[])
     GetCurrentDirectoryA(MAX_PATH, path);
     std::string current_path(path);
     std::string m_strRootPath = current_path;
-    m_strRootPath += "/rho/";
+    m_strRootPath += "/RhoBundle/";
 
     rholib_init(m_strRootPath, m_strRootPath, m_strRootPath, m_strRootPath, "", "", false);
 
