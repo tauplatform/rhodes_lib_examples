@@ -7,7 +7,7 @@ Native_iOS - Native iOS example.
 
 Native_Android - Native Android example (for Android Studio)
 
-RhoNodeRubyApp - Rhodes application (works on iOS and Android only) where main code is Node.ja based Rhodes app, but also Ruby local server started and works (developer can access to Ruby code via Rhodes API or make net request to Ruby server via Node.js network API)
+RhoNodeRubyApp - Rhodes application (works on iOS and Android only) where main code is Node.js based Rhodes app, but also Ruby local server started and works (developer can access to Ruby code via Rhodes API or make net request to Ruby server via Node.js network API)
 
 NativeWindows - Native Windows example.
 
