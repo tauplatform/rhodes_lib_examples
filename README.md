@@ -101,3 +101,14 @@ Rhodes application (works on iOS and Android only) where main code is Node.ja ba
 
 See example code in RhoNodeRubyApp/nodejs/server/app.js - it main Node.js application code
 Ruby code see in standart place - /app folder
+
+
+# for Windows native app
+
+1. rake build:win32:rhodeslib_lib["<you_path>/NatvieWindows/RhodesApp"] - build of the library, in build.yml debug build creates dll with suffix "d" in the name.
+Necessary headerfiles will be in rhoruby folder.
+
+2. rake build:win32:rhodeslib_bundle[""<you_path>/NatvieWindows/RhodesApp"] - build and compile of the bundle by set path. Bundle will be in RhodesBundle folder.
+
+Further connection of the library is no different from the connection of any other library. That is, the path to .lib (stub for .dll) and the path to headers are always indicated, depending on the IDE, this may look like
+differently, for an example with Visual Studio, look in rhodes_lib_examples / NatvieWindows.
