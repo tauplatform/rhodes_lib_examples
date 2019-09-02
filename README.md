@@ -45,7 +45,7 @@ Examples can be executed from main application screen by buttons.
 
 4. if you want to link library and bundle into your already exist Android project make next steps( skip this step for Native_Android - it already prepared for rhodes lib and bundle):
 
-You should make /app/libs folder if it not exists and also /app/src/main/assets/ - make it by self or make from Android Studio: right menu button on app item and -> new -> folder -> Assests Folder
+You should make /app/libs folder if it doesn't exist and also /app/src/main/assets/ - make it by self or make from Android Studio: right menu button on app item and -> new -> folder -> Assests Folder
 
 Prepare lib and bundle by rake commands (see above)
 
