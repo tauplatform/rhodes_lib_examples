@@ -16,6 +16,7 @@ class DefaultMain extends RhoMain
     public void onAppStart()
     {
         super.onAppStart();
+        MainActivity.instance().finish();
 
     }
 }
@@ -46,6 +47,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onStart()
+
     {
         super.onStart();
     }
