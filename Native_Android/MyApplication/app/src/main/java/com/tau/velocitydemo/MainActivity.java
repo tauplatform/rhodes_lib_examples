@@ -3,20 +3,47 @@ package com.tau.velocitydemo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 
 import com.rhomobile.rhodes.RhoMain;
 import com.rhomobile.rhodes.RhodesService;
+import com.rhomobile.rhodes.RhoRubySingleton;
+
 
 
 class DefaultMain extends RhoMain
 {
+    public static String CHANEL_ID = "VELOCITY_CHANEL";
+    private void createNotificationChannel() {
+        //int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        //NotificationChannel channel = new NotificationChannel(CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel), importance);
+        //NotificationManager notificationManager = MainActivity.instance().getSystemService(NotificationManager.class);
+        //notificationManager.createNotificationChannel(channel);
+    }
+
     @Override
     public void onAppStart()
     {
         super.onAppStart();
         MainActivity.instance().finish();
+
+        createNotificationChannel();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.instance())
+                .setSmallIcon(R.mipmap.icon)
+                .setContentTitle("Velocitydemo")
+                .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
+        notificationManager.notify(1, builder.build());
 
     }
 }
@@ -35,7 +62,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         instance = this;
-
         //setContentView(R.layout.activity_main);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
