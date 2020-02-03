@@ -17,7 +17,7 @@ import android.app.Notification.Builder;
 
 
 
-class DefaultMain extends RhoMain
+class DefaultMain extends RhoMain// implements com.rhomobile.rhodes.RhodesService.Listener
 {
     public static String CHANEL_ID = "VELOCITY_CHANEL";
 
@@ -30,14 +30,34 @@ class DefaultMain extends RhoMain
                 .setSmallIcon(R.mipmap.icon)
                 .setContentTitle("Velocitydemo")
                 .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
-                .setPriority(Notification.PRIORITY_HIGH);
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setOngoing(true);
 
         builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
-        notificationManager.notify(1, builder.build());
+        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
+        //notificationManager.notify(1, builder.build());
+
+        RhodesService.getInstance().startServiceForeground(1, builder.build());
         MainActivity.instance().finish();
+        //RhodesService.getInstance().setListener(this);
     }
+/*
+    @Override
+    public void serviceStarted(RhodesService rhodesService) {
+
+        Builder builder = AndroidFunctionalityManager.getAndroidFunctionality().getNotificationBuilder(MainActivity.instance(), CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel))
+                .setSmallIcon(R.mipmap.icon)
+                .setContentTitle("Velocitydemo")
+                .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setOngoing(true);
+
+        builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+        rhodesService.startServiceForeground(0, builder.build());
+    }
+*/
 }
 
 public class MainActivity extends Activity {
@@ -59,7 +79,8 @@ public class MainActivity extends Activity {
 
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        startService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
+        //startService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
+        startForegroundService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
         RhodesService.setRhoMain(new DefaultMain());
     }
 
