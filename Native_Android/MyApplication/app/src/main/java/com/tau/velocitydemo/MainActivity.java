@@ -14,6 +14,7 @@ import com.rhomobile.rhodes.RhodesService;
 import com.rhomobile.rhodes.RhoRubySingleton;
 import com.rhomobile.rhodes.osfunctionality.*;
 import android.app.Notification.Builder;
+import android.os.Build;
 
 
 
@@ -74,13 +75,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         instance = this;
-        //setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if(Build.VERSION.SDK_INT >= 28)
+            startForegroundService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
+        else
+            startService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
 
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        //startService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
-        startForegroundService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
         RhodesService.setRhoMain(new DefaultMain());
     }
 
