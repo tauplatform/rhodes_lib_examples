@@ -1,50 +1,42 @@
 package com.tau.velocitydemo;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 
 import com.rhomobile.rhodes.RhoMain;
 import com.rhomobile.rhodes.RhodesService;
 import com.rhomobile.rhodes.RhoRubySingleton;
+import com.rhomobile.rhodes.osfunctionality.*;
+import android.app.Notification.Builder;
 
 
 
 class DefaultMain extends RhoMain
 {
     public static String CHANEL_ID = "VELOCITY_CHANEL";
-    private void createNotificationChannel() {
-        //int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        //NotificationChannel channel = new NotificationChannel(CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel), importance);
-        //NotificationManager notificationManager = MainActivity.instance().getSystemService(NotificationManager.class);
-        //notificationManager.createNotificationChannel(channel);
-    }
 
     @Override
     public void onAppStart()
     {
         super.onAppStart();
-        MainActivity.instance().finish();
 
-        createNotificationChannel();
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.instance())
+        Builder builder = AndroidFunctionalityManager.getAndroidFunctionality().getNotificationBuilder(MainActivity.instance(), CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel))
                 .setSmallIcon(R.mipmap.icon)
                 .setContentTitle("Velocitydemo")
                 .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(Notification.PRIORITY_HIGH);
 
         builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
         notificationManager.notify(1, builder.build());
-
+        MainActivity.instance().finish();
     }
 }
 
