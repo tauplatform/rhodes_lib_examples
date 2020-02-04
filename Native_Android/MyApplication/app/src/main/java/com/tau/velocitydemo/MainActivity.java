@@ -35,14 +35,15 @@ class DefaultMain extends RhoMain// implements com.rhomobile.rhodes.RhodesServic
                 PendingIntent.getBroadcast(MainActivity.instance(), 0, stopIntent, 0);
 
         Builder builder = AndroidFunctionalityManager.getAndroidFunctionality().getNotificationBuilder(MainActivity.instance(), CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel))
-                .setSmallIcon(R.mipmap.icon)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle("Velocitydemo")
                 .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setOngoing(true)
-                .addAction(new Notification.Action.Builder(R.drawable.ic_stop, "Stop", stopPendingIntent).build());
+                .addAction(new Notification.Action.Builder(R.drawable.ic_stop, "Stop", stopPendingIntent)
+                        .build());
 
-        builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        builder.setVibrate(new long[]{200});
 
         RhodesService.getInstance().startServiceForeground(1, builder.build());
         MainActivity.instance().finish();

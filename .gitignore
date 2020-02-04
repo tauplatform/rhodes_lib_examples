@@ -74,3 +74,8 @@ project/
 rhosimulator/
 public/api/generated/
 .cbc
+
+**/.gradle
+**/.idea
+Native_Android/MyApplication/app/src/main/assets
+**/local.properties

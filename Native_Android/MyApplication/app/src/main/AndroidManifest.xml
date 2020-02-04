@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:name="com.rhomobile.rhodes.RhodesApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
