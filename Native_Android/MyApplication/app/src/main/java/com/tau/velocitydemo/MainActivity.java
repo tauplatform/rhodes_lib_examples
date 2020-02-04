@@ -15,29 +15,34 @@ import com.rhomobile.rhodes.RhoRubySingleton;
 import com.rhomobile.rhodes.osfunctionality.*;
 import android.app.Notification.Builder;
 import android.os.Build;
-
+import android.app.PendingIntent;
 
 
 class DefaultMain extends RhoMain// implements com.rhomobile.rhodes.RhodesService.Listener
 {
     public static String CHANEL_ID = "VELOCITY_CHANEL";
 
+
+
     @Override
     public void onAppStart()
     {
         super.onAppStart();
+
+        Intent stopIntent = new Intent(MainActivity.instance(), StopAppReciever.class);
+        stopIntent.putExtra("STOP", 1);
+        PendingIntent stopPendingIntent =
+                PendingIntent.getBroadcast(MainActivity.instance(), 0, stopIntent, 0);
 
         Builder builder = AndroidFunctionalityManager.getAndroidFunctionality().getNotificationBuilder(MainActivity.instance(), CHANEL_ID, MainActivity.instance().getString(R.string.name_chanel))
                 .setSmallIcon(R.mipmap.icon)
                 .setContentTitle("Velocitydemo")
                 .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
                 .setPriority(Notification.PRIORITY_HIGH)
-                .setOngoing(true);
+                .setOngoing(false)
+                .addAction(new Notification.Action.Builder(R.drawable.ic_stop, "Stop", stopPendingIntent).build());
 
         builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-
-        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.instance());
-        //notificationManager.notify(1, builder.build());
 
         RhodesService.getInstance().startServiceForeground(1, builder.build());
         MainActivity.instance().finish();
@@ -70,10 +75,16 @@ public class MainActivity extends Activity {
         return instance;
     }
 
+    public void killApp()
+    {
+        RhodesService.getInstance().stopSelf();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        StopAppReciever.SetMainActivity(this);
         instance = this;
         if(Build.VERSION.SDK_INT >= 28)
             startForegroundService(new Intent(this, com.rhomobile.rhodes.RhodesService.class));
@@ -88,12 +99,14 @@ public class MainActivity extends Activity {
 
     {
         super.onStart();
+        finish();
     }
 
     @Override
     public void onResume()
     {
         super.onResume();
+        finish();
     }
 
     @Override

@@ -21,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".StopAppReciever"  android:exported="true">
+        </receiver>
     </application>
+
+
 
 </manifest>
