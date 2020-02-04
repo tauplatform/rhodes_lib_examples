@@ -39,7 +39,7 @@ class DefaultMain extends RhoMain// implements com.rhomobile.rhodes.RhodesServic
                 .setContentTitle("Velocitydemo")
                 .setContentText("Server started on: " + RhoRubySingleton.instance().getRubyServerURL())
                 .setPriority(Notification.PRIORITY_HIGH)
-                .setOngoing(false)
+                .setOngoing(true)
                 .addAction(new Notification.Action.Builder(R.drawable.ic_stop, "Stop", stopPendingIntent).build());
 
         builder.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
