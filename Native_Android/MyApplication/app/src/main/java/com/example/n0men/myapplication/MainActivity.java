@@ -111,6 +111,31 @@ class DefaultMain extends RhoMain
             }
         });
 
+        Button btest4 = (Button) MainActivity.instance().findViewById(R.id.test4);
+
+        RhoRubySingleton.IRubyNativeCallback nativeCallback = new RhoRubySingleton.IRubyNativeCallback() {
+            @Override
+            public void onRubyNative(String s) {
+                Log.d("TestAPP", "RubyNativeCallback received ! with param in JSON:");
+                Log.d("TestAPP", s);
+            }
+        };
+        RhoRubySingleton.instance().addRubyNativeCallback("mySuperMegaRubyNativeCallbackID", nativeCallback);
+
+        btest4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RhoRubySingleton.instance().executeInRubyThread(new RhoRubySingleton.RhoRunnable() {
+                    public void rhoRun() {
+                        Log.d("TestAPP", "execute Model1.callRubyNativeCallback() in ruby thread");
+                        RhoRubySingleton.instance().executeRubyMethodWithJSON("Model1", "callRubyNativeCallback", null);
+                    }
+                });
+            }
+        });
+
+
+
     }
 }
 

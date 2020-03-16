@@ -29,6 +29,12 @@
             android:layout_height="wrap_content"
             android:text="Test 3" />
 
+        <Button
+            android:id="@+id/test4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test 4" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
