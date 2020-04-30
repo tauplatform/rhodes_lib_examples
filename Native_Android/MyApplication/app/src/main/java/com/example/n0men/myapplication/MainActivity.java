@@ -14,8 +14,8 @@ import android.widget.Button;
 import com.rhomobile.rhodes.RhodesActivity;
 import com.rhomobile.rhodes.RhoMain;
 import com.rhomobile.rhodes.RhodesService;
-import com.rhomobile.rhodes.util.JSONGenerator;
 import com.rhomobile.rhodes.RhoRubySingleton;
+import com.rhomobile.rhodes.socket.SSLImpl;
 
 import org.json.JSONStringer;
 
@@ -25,12 +25,76 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 class DefaultMain extends RhoMain
 {
+
+    class RhoHostVerifier implements HostnameVerifier
+    {
+        @Override
+        public  boolean verify(String hostname, SSLSession session)
+        {
+            return true;
+        }
+    }
+
+
+    public  void rest_api_sample()
+    {
+        String serverUrl = RhoRubySingleton.instance().getRubyServerURL() + "/app/Model1/get_first_item_field_by_name?fieldName=attr1";
+        String request = serverUrl;
+
+        boolean is_https = RhodesService.isLocalHttpsServerEnable();
+
+        try
+        {
+            URL url = new URL(request);
+            HttpURLConnection urlConnection = null;
+
+            if(is_https)
+            {
+                urlConnection = (HttpsURLConnection) url.openConnection();
+                ((HttpsURLConnection)urlConnection).setSSLSocketFactory(SSLImpl.getSecureClientFactory());
+                ((HttpsURLConnection)urlConnection).setHostnameVerifier(new RhoHostVerifier());
+            }
+            else
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+            urlConnection.setReadTimeout(2000);
+            urlConnection.setConnectTimeout(2000);
+            urlConnection.setRequestMethod("GET");
+            InputStream in = urlConnection.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(in);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String response = null, out = "";
+
+            while((response = bufferedReader.readLine()) != null) {
+                out += response;
+            }
+
+            Log.d("TestAPP", out);
+
+            bufferedReader.close();
+            inputStreamReader.close();
+            in.close();
+            urlConnection.disconnect();
+
+
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onAppStart()
     {
@@ -55,37 +119,7 @@ class DefaultMain extends RhoMain
 
                 new Thread(new Runnable() {
                     public void run() {
-                        String serverUrl = RhoRubySingleton.instance().getRubyServerURL() + "/app/Model1/get_first_item_field_by_name?fieldName=attr1";
-                        String request = serverUrl;
-
-                        try
-                        {
-                            URL url = new URL(request);
-                            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                            urlConnection.setReadTimeout(2000);
-                            urlConnection.setConnectTimeout(2000);
-                            urlConnection.setRequestMethod("GET");
-                            InputStream in = urlConnection.getInputStream();
-                            InputStreamReader inputStreamReader = new InputStreamReader(in);
-                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                            String response = null, out = "";
-
-                            while((response = bufferedReader.readLine()) != null) {
-                                out += response;
-                            }
-
-                            Log.d("TestAPP", out);
-
-                            bufferedReader.close();
-                            inputStreamReader.close();
-                            in.close();
-                            urlConnection.disconnect();
-                        }
-
-                        catch (java.io.IOException e)
-                        {
-                            e.printStackTrace();
-                        }
+                        rest_api_sample();
                     }
                 }).start();
 
