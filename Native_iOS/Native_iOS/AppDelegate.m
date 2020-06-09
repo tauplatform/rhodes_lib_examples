@@ -10,6 +10,35 @@
 
 #import <Rhodes/Rhodes.h>
 
+
+
+@interface InitAppNativeCallbackReceiver : NSObject <IRhoRubyNativeCallback> {
+}
+
+-(void) onRubyNativeWithParam:(id<IRhoRubyObject>)param;
+
+@end
+
+@implementation InitAppNativeCallbackReceiver
+
+-(void) onRubyNativeWithParam:(id<IRhoRubyObject>)param {
+    NSLog(@"$$$ InitAppNativeCallbackReceiver.onRubyNativeWithParam START");
+    
+        
+    
+    NSLog(@"$$$ InitAppNativeCallbackReceiver.onRubyNativeWithParam FINISH");
+}
+
+@end
+
+
+
+
+
+
+
+
+
 @interface AppDelegate ()
 
 @end
@@ -21,6 +50,11 @@
     // Override point for customization after application launch.
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"$$$ Call Rhodes initialize asynchronously ...");
+        
+        id<IRhoRuby> rr = [RhoRubySingletone getRhoRuby];
+        InitAppNativeCallbackReceiver* callback_reciver = [[InitAppNativeCallbackReceiver alloc] init];
+        [rr addRubyNativeCallback:callback_reciver callback_id:@"myCallbackForFinishRubyInitialization"];
+        
         [[RhodesLib getSharedInstance] startRhodes:application];
         NSLog(@"$$$ Rhodes framewrok and embedded Rhodes application initialized !");
     });

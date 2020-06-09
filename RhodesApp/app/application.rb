@@ -9,7 +9,14 @@ class AppApplication < Rho::RhoApplication
     #@@toolbar = nil
     super
 
+    puts "$$$ ~~before sleep 10"
+    sleep(10)
+    puts "$$$ ~~after sleep 10"
 
-    
+    Rho::Ruby.callNativeCallback("myCallbackForFinishRubyInitialization", nil)
+
+    puts "$$$ native callback was called"
+
+
   end
 end
