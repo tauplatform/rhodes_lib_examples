@@ -1,5 +1,6 @@
 ## Note: sdk is full path to Rhodes root. If not defined - automatically find latest installed Rhodes gem
 #sdk: "/Users/MOHUS/tauplatform/rhodes.extract_ruby_to_lib"
+sdk: c:\work\tau\repos\rhodes
 sdkversion: 7.1.0
 name: RhodesApp
 version: 1.0
@@ -115,6 +116,10 @@ android:
   version: 7.0.0
   ## Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
   logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+
+  abis:
+  - arm
+  - aarch64
 
 ## Note: setup android_title to 0 for remove default window titlebar in Android application
 #android_title: 0
