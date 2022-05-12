@@ -10,7 +10,7 @@ class AppApplication < Rho::RhoApplication
     super
 
     puts "$$$ ~~before sleep 10"
-    sleep(10)
+    #sleep(10)
     puts "$$$ ~~after sleep 10"
 
     Rho::Ruby.callNativeCallback("myCallbackForFinishRubyInitialization", nil)
