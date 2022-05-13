@@ -35,13 +35,13 @@ Examples can be executed from main application screen by buttons.
 # for Android native App
 
 1. go to RhodesApp folder
-2. prepare Rhodes library for Android project (already linked in Native_Android example) - framework should be placed into Native_Android/MyApplication/app/libs/ folder !
+2. prepare Rhodes library for Android project (already linked in Native_Android example) - framework should be placed into Native_Android/MyApplicationNew/app/libs/ folder !
 
-<pre>rake build:android:rhodeslib_lib["fullpath/Native_Android/MyApplication/app/libs/"]</pre>
+<pre>rake build:android:rhodeslib_lib["fullpath/Native_Android/MyApplicationNew/app/libs/"]</pre>
 
-3. prepare Rhodes application bundle (already linked in Native_Android example) - folder RhoBundle should be placed into Native_Android/MyApplication/app/src/main/assets/ folder !
+3. prepare Rhodes application bundle (already linked in Native_Android example) - folder RhoBundle should be placed into Native_Android/MyApplicationNew/app/src/main/assets/ folder !
 
-<pre>rake build:android:rhodeslib_bundle["fullpath/Native_Android/MyApplication/app/src/main/assets/"]</pre>
+<pre>rake build:android:rhodeslib_bundle["fullpath/Native_Android/MyApplicationNew/app/src/main/assets/"]</pre>
 
 4. if you want to link library and bundle into your already exist Android project make next steps( skip this step for Native_Android - it already prepared for rhodes lib and bundle):
 
@@ -49,9 +49,8 @@ You should make /app/libs folder if it doesn't exist and also /app/src/main/asse
 
 Prepare lib and bundle by rake commands (see above)
 
-In build.gradle in section dependencies:
-<pre>implementation 'com.android.support:appcompat-v7:26.1.0'
-implementation(name:'RhodesApp-1.0', ext:'aar') </pre>
+Follow this documentation to add /app/libs/RhodesApp-1.0.aar into your project (already added in our example MyApplicationNew!):
+https://developer.android.com/studio/projects/android-library#psd-add-dependencies
 
 In AndroidManifest.xml in section application add this:
 <pre>android:name="com.rhomobile.rhodes.RhodesApplication"</pre>
@@ -81,7 +80,7 @@ onAppStart() will be called when Rhode application(server) already started.
 
 5. Build -> Build APK and Run
 
-Example ruby access code located in https://github.com/tauplatform/rhodes_lib_examples/blob/master/Native_Android/MyApplication/app/src/main/java/com/example/n0men/myapplication/MainActivity.java
+Example ruby access code located in https://github.com/tauplatform/rhodes_lib_examples/blob/master/Native_Android/MyApplicationNew/app/src/main/java/com/example/n0men/myapplication/MainActivity.java
 There are 3 buttons:
 
 INIT - call method for add two items into DB (all ruby access functionality must be call only from Ruby thread)
