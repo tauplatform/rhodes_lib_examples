@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplicationNew">
-        <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize">
+        <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize|fontScale|smallestScreenSize|keyboard|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
